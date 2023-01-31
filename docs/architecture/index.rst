@@ -6,31 +6,37 @@
  System Architecture
 #####################
 
-.. pull-quote::
+.. meta::
+   :description: Discover the system architecture behind Determined and how it coordinates complex resources behind the scenes.
+   :keywords: system architecture, diagram, workflow
 
-   "Determined makes it easy to transform data into probabilities."
-
-   -- Garrett Goon, 2022
+Learn about the Determined system architecture and how it coordinates complex resources behind the
+scenes while you focus on model development tasks.
 
 **********
  Overview
 **********
 
-This document describes the Determined system architecture in terms of its components and behavior,
-providing context for both system administrators and machine learning engineers before exploring
-Determined in more detail.
-
-Determined implements the training workflow shown in the **Run Training** section of the following
-figure:
+Let's start with a high-level overview of Determined. In this diagram, we can see that data is
+loaded into a training workflow (represented here by the **Run Training** box). This high-level
+overview describes how Determined provides built-in support for data, checkpointing, and metric
+storage.
 
 .. image:: /assets/images/arch12.png
+   :scale: 100%
+   :alt: Figure showing how Determined AI implements the training workflow.
 
 **TBD: Describe what the relevant boxes are and how they interact; e.g., built-in support for data,
 checkpointing, and metric storage.**
 
-The following figure is a more detailed view of the Determined platform:
+Zooming in for a closer look, we can see that the training workflow consists of a master instance
+and one or more training instances. **Describe the web interface, REST API, user scripts, CLI
+inter-operate. Describe the master instance role and how it operates with the training instances.
+Describe fluent, agent, task container, storage**.
 
 .. image:: /assets/images/arch11.png
+   :scale: 100%
+   :alt: Figure showing detailed system architecture of the Determined AI platform.
 
 **TBD: Describe what the boxes are and how they interact. And, of course, generalize the diagram.**
 
@@ -40,13 +46,16 @@ The following figure is a more detailed view of the Determined platform:
 
 Determined deployment can range from a local laptop and on-premises setups to distributed master and
 agent nodes, all with database and file storage connectivity, containerization, and cloud resource
-options.
-
-The following figure shows the key master and agent instances on separate machines:
+options. The master and one agent can run on a single machine, or the master and one or more agents
+can exist on separate machines.
 
 .. image:: /assets/images/arch00.png
+   :scale: 100%
+   :alt: Figure showing The Determined AI master and agent instances on separate machines.
 
-However, a single machine can have both a master and one agent instance.
+*The Determined master and agent instances on separate machines.*
+
+Let's look at the master and agent nodes in more detail.
 
 Master and Agent Nodes
 ======================
@@ -204,6 +213,8 @@ The following figure shows the difference between ``Trial``-based training and u
 directly, from a programming perspective:
 
 .. image:: /assets/images/arch03.png
+   :scale: 100%
+   :alt: Figure showing alt desc.
 
 You run an experiment by specifying a *launcher*. The distributed training launcher must implement
 the following logic:
@@ -267,6 +278,8 @@ In Core API-based training, you interact directly with the Determined platform t
 The following figure shows the logic you need to provide when you use the Core API, directly:
 
 .. image:: /assets/images/arch01.png
+   :scale: 100%
+   :alt: Figure showing alt desc.
 
 The Determined master launches a single container, which calls the *training script* specified in
 the experiment configuration file. The launcher starts a single worker using the training script.
@@ -278,6 +291,8 @@ Distributed Training using the Core API
 The following figure shows multiple agents in a distributed training scenario using the Core API:
 
 .. image:: /assets/images/arch02.png
+   :scale: 100%
+   :alt: Figure showing alt desc.
 
 The master launches a single container with multiple *slots* attached or multiple containers that
 each have one or more slots. The training script is called once in each container.
@@ -349,6 +364,8 @@ example. The following figure shows the relationship of user code to ``PyTorchTr
 frameworks:
 
 .. image:: /assets/images/arch09.png
+   :scale: 100%
+   :alt: Figure showing alt desc.
 
 When you use ``PyTorchTrial``, you use PyTorch or TensorFlow to define the model, dataset,
 optimizer, and other trial-specific objects. ``PyTorchTrial`` handles both the Core API details and
@@ -450,12 +467,16 @@ When you use Core API directly, you can train using the framework of your choice
 frameworks:
 
 .. image:: /assets/images/arch10.png
+   :scale: 100%
+   :alt: Figure showing alt desc.
 
 The Core API exposes mechanisms to integrate your code with the Determined platform. Each
 ``core_context`` component corresponds to a Determined platform component, as described in the
 following sections.
 
 .. image:: /assets/images/arch04.png
+   :scale: 100%
+   :alt: Figure showing alt desc.
 
 The ClusterInfo API provides the master with information about the currently-running task and is
 available only to tasks running on the cluster. ``ClusterInfo`` exposes properties that are set for
