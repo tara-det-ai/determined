@@ -1,17 +1,19 @@
-#####################
+###########################
  Torch Batch Processing API
-#####################
+###########################
+
 .. caution::
-    This is an experimental API and may change in the future.
+    This is an experimental API and may change at any time.
 
 .. _torch_batch_processing_ug:
 
 Overview
 =============
-This API takes in (1) a dataset and (2) a user-defined processor class and runs distributed data
+
+The Torch Batch Processing API takes in (1) a dataset and (2) a user-defined processor class and runs distributed data
 processing.
 
-Under the hood, the API helps you to:
+With this API, you can perform the following tasks:
 
 - shard a dataset by number of workers available
 - apply user-defined logic to each batch of data
@@ -22,6 +24,7 @@ This is a flexible API that can be used for many different tasks, including batc
 
 The API
 =============
+
 The main arguments to torch_batch_process is processor class and dataset.
 
 .. code:: python
@@ -42,12 +45,12 @@ that can be used within the TorchBatchProcessor class.
 
 [Placeholder for TorchBatchProcessorContext API docstring pull]
 
-Example: Batch (offline) inference
-=============
+Example: Batch (Offline) Inference
+==================================
 
 torch_batch_process API can support batch inference use case. The example below is taken from [PLACEHOLDER].
 
-Step 1: define a InferenceProcessor. You should initialize your model in the __init__ function of InferenceProcessor.
+Step 1: Define a InferenceProcessor. You should initialize your model in the __init__ function of InferenceProcessor.
 
 .. code:: python
 
@@ -85,7 +88,7 @@ Step 1: define a InferenceProcessor. You should initialize your model in the __i
 
             self.output = []
 
-Step 2: Initialize the dataset to be processed
+Step 2: Initialize the dataset to be processed.
 
 .. code:: python
 
@@ -99,7 +102,7 @@ Step 2: Initialize the dataset to be processed
             inference_data = tv.datasets.CIFAR10(
                 root="/data", train=False, download=True, transform=transform
             )
-Step 3: Pass the InferenceProcessor class and the dataset to torch_batch_process
+Step 3: Pass the InferenceProcessor class and the dataset to torch_batch_process.
 
 .. code:: python
 
