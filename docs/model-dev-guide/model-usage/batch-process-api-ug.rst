@@ -7,9 +7,10 @@
 ############################
 
 .. meta::
-   :description: Learn how to use the Torch Batch Processing API. 
+   :description: Learn how to use the Torch Batch Processing API.
 
-In this guide, you'll learn about the :ref:`torch_batch_process_api_ref` and how to perform batch inference (also known as offline inference).
+In this guide, you'll learn about the :ref:`torch_batch_process_api_ref` and how to perform batch
+inference (also known as offline inference).
 
 +---------------------------------------------------------------------+
 | Visit the API reference                                             |
@@ -38,9 +39,9 @@ With this API, you can perform the following tasks:
 This is a flexible API that can be used for many different tasks, including batch (offline)
 inference.
 
-**********
+*******
  Usage
-**********
+*******
 
 The main arguments to torch_batch_process are processor class and dataset.
 
@@ -72,13 +73,14 @@ Add content here and a ref link to the class or function in the reference page.
  How To Perform Batch (Offline) Inference
 ******************************************
 
-In this section, we'll learn how to perform batch inference using the ``torch_batch_process`` API. For more information about this use case or to obtain the tutorial files, visit this URL.
+In this section, we'll learn how to perform batch inference using the ``torch_batch_process`` API.
+For more information about this use case or to obtain the tutorial files, visit this URL.
 
 Step 1: Define a InferenceProcessor
 ===================================
 
-The first step is to Define a InferenceProcessor. You should initialize your model in the __init__ function of
-InferenceProcessor.
+The first step is to Define a InferenceProcessor. You should initialize your model in the __init__
+function of InferenceProcessor.
 
 .. code:: python
 
@@ -117,7 +119,7 @@ InferenceProcessor.
            self.output = []
 
 Step 2: Initialize the Dataset
-===================================
+==============================
 
 Initialize the dataset you want to process.
 
@@ -150,5 +152,3 @@ Finally, pass the InferenceProcessor class and the dataset to ``torch_batch_proc
            batch_size=64,
            checkpoint_interval=10
        )
-
-
