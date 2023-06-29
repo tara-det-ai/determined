@@ -28,22 +28,20 @@ The main arguments to torch_batch_process is processor class and dataset.
        dataset=dataset
    )
 
-********************************************************
- Placeholder for torch_batch_process API docstring pull
-********************************************************
+**************************************************
+ ``determined.pytorch.TorchBatchProcessorContext``
+**************************************************
 
-Processor should be a subclass of TorchBatchProcessor. The two functions you must implement are the
-__init__ and process_batch. The other lifecycle functions are optional.
+.. autoclass:: determined.pytorch.experimental.TorchBatchProcessorContext
+   :members:
+   :member-order: bysource
 
-********************************************************
- Placeholder for TorchBatchProcessor API docstring pull
-********************************************************
 
-During __init__ of TorchBatchProcessor, we pass in a TorchBatchProcessorContext object, which
-contains useful methods that can be used within the TorchBatchProcessor class.
+*******************************************
+ ``determined.pytorch.TorchBatchProcessor``
+*******************************************
 
-***************************************************************
- Placeholder for TorchBatchProcessorContext API docstring pull
-***************************************************************
+.. autoclass:: determined.pytorch.experimental.TorchBatchProcessor
+   :members:
+   :member-order: bysource
 
-Add the Sphinx autoclass directive here.
